@@ -1,0 +1,45 @@
+{
+  "name": "Wyvern Drive",
+  "description": "Download files for Wyvern Drive cloud storage - bypass CORS restrictions",
+  "version": "1.0.1",
+  "manifest_version": 3,
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": [
+    "*://*.discordapp.com/*",
+    "*://*.discord.com/*",
+    "https://cdn.discordapp.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://wyvern-drive.netlify.app/*",
+        "https://wyverndrive.netlify.app/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "http://localhost:5173/*",
+        "http://localhost:3000/*",
+        "http://127.0.0.1:5173/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "permissions": []
+}
